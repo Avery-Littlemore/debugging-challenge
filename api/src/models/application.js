@@ -1101,6 +1101,9 @@ class Application {
   getAll() {
     return this.state;
   }
+  getSelect(uuids) {
+    return this.state.filter(item => uuids.includes(item.userUuid))
+  }
   getById(uuid) {
     return this.state.find((item) => item.uuid === uuid);
   }

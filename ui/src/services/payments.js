@@ -7,6 +7,11 @@ export const getPayments = async () => {
   return data;
 };
 
+export const getSelectPayments = async (uuids) => {
+  const { data } = await axios.get(`${userServiceBaseUrl}/select_payments`, {params: { uuids }});
+  return data;
+};
+
 export const createPayment = async ({ applicationUuid, requestedAmount }) => {
   const { data } = await axios.post(`${userServiceBaseUrl}/payments`, {
     applicationUuid,

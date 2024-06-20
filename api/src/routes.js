@@ -13,17 +13,39 @@ const Application = new ApplicationModel();
 const Payment = new PaymentModel();
 
 router.get('/users', (req, res) => {
-  const body = User.getAll();
-  res.json({ body });
+  const page = req.query.page
+  const rows = req.query.rows
+  const users = User.getSelect(page, rows);
+  res.json({ count: users.count, body: users.body });
 });
+
+// router.get('/users/:pageNumber', (req, res) => {
+//   const pageNumber = req.params.pageNumber
+//   console.log(pageNumber)
+//   const body = User.getSelect(pageNumber);
+//   res.json({ body });
+// });
 
 router.get('/applications', (req, res) => {
   const body = Application.getAll();
   res.json({ body });
 });
 
+router.get('/select_applications', (req, res) => {
+  const uuids = req.query.uuids
+  console.log(uuids)
+  const body = Application.getSelect(uuids);
+  res.json({ body });
+});
+
 router.get('/payments', (req, res) => {
   const body = Payment.getAll();
+  res.json({ body });
+});
+
+router.get('/select_payments', (req, res) => {
+  const uuids = req.query.uuids
+  const body = Payment.getSelect(uuids);
   res.json({ body });
 });
 

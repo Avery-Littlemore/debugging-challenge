@@ -410,6 +410,9 @@ class Payment {
   getAll() {
     return this.state;
   }
+  getSelect(uuids) {
+    return this.state.filter(item => uuids.includes(item.applicationUuid))
+  }
   getById(uuid) {
     return this.state.find((item) => item.uuid === uuid);
   }

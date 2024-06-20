@@ -1504,8 +1504,16 @@ class User {
     ];
   }
   getAll() {
-    return this.state;
+    return this.state
   }
+
+  getSelect(page, rows) {
+    return {
+      count: this.state.length,
+      body: this.state.slice(Number(page * rows), Number(page * rows) + Number(rows))
+    }
+  }
+
   getById(uuid) {
     return this.state.find((item) => item.uuid === uuid);
   }
